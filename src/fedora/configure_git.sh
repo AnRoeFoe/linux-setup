@@ -39,3 +39,10 @@ while :; do
 done
 
 git config --global init.defaultBranch main
+
+wget https://github.com/git-ecosystem/git-credential-manager/releases/download/v3.0.2/gcm-linux-x64-3.0.2.tar.gz
+mkdir -p ~/.local/bin
+tar -xzf gcm-linux-x64-3.0.2.tar.gz -C ~/.local/bin
+rm gcm-linux-x64-3.0.2.tar.gz
+~/.local/bin/git-credential-manager configure
+git config --global credential.credentialStore secretservice
