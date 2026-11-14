@@ -64,6 +64,8 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 git config --global user.name "Max Mustermann"
 git config --global user.email "max.mustermann@web.de"
 
+git config --global init.defaultBranch main
+
 popd
 
 # Install the FiraCode Nerd Font
