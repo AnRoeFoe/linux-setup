@@ -3,6 +3,10 @@
 # This script sets up a fresh Fedora system with the terminal and editor
 # tools I use most often, then installs my personal shell and Git config.
 
+# Resolve this script's directory and run the Git helper script.
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+"$SCRIPT_DIR/configure_git.sh"
+
 # Install snapper
 sudo dnf -y install snapper
 
@@ -57,50 +61,10 @@ stow -t ~ kitty
 stow -t ~ inputrc
 stow -t ~ bashrc.d
 
+popd
+
 # Install the LazyVim starter configuration for Neovim.
 git clone https://github.com/LazyVim/starter ~/.config/nvim
-
-# Ask for the global Git identity used for commits on this machine.
-while :; do
-  printf "Git user name: "
-  if ! IFS= read -r git_name; then
-    printf "Failed to read Git user name.\n" >&2
-    exit 1
-  fi
-
-  printf "Git user email: "
-  if ! IFS= read -r git_email; then
-    printf "Failed to read Git user email.\n" >&2
-    exit 1
-  fi
-
-  if [ -z "$git_name" ] || [ -z "$git_email" ]; then
-    printf "Git user name and email must not be empty.\n"
-    continue
-  fi
-
-  printf "Use this Git identity?\n  Name: %s\n  Email: %s\nConfirm [y/N]: " \
-    "$git_name" "$git_email"
-  if ! IFS= read -r confirmation; then
-    printf "Failed to read confirmation.\n" >&2
-    exit 1
-  fi
-
-  case "$confirmation" in
-    [Yy]|[Yy][Ee][Ss])
-      git config --global user.name "$git_name"
-      git config --global user.email "$git_email"
-      break
-      ;;
-    *)
-      printf "Please enter the Git identity again.\n"
-      ;;
-  esac
-done
-
-git config --global init.defaultBranch main
-
-popd
 
 # Install the FiraCode Nerd Font
 mkdir -p ~/.local/share/fonts/FiraCode
