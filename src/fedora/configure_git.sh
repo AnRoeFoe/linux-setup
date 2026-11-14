@@ -36,7 +36,7 @@ while :; do
       # Store the accepted identity in the global Git configuration.
       git config --global user.name "$git_name"
       git config --global user.email "$git_email"
-      exit 0
+      break
       ;;
     *)
       printf "Please enter the Git identity again.\n"
