@@ -1,0 +1,19 @@
+[custom0]
+binding='<Super>t'
+command='kitty'
+name='Launch Terminal'
+
+[custom1]
+binding='<Super>b'
+command='firefox'
+name='Launch Browser'
+
+[custom2]
+binding='<Super>e'
+command='nautilus'
+name='Launch Files'
+
+[custom3]
+binding='<Control><Alt>End'
+command='gnome-session-quit --power-off'
+name='Power Off'
