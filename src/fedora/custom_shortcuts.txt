@@ -17,3 +17,8 @@ name='Launch Files'
 binding='<Control><Alt>End'
 command='gnome-session-quit --power-off'
 name='Power Off'
+
+[custom4]
+binding='<Super>g'
+command='copilot-app-linux'
+name='GitHub Copilot'

@@ -48,7 +48,8 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
   "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', \
-  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', \
+  '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
 
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < custom_shortcuts.txt
 
@@ -70,5 +71,9 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 mkdir -p ~/.local/share/fonts/FiraCode
 cp fonts/FiraCode/* ~/.local/share/fonts/FiraCode
 fc-cache -fv
+
+wget https://gh.io/copilot-app-linux
+chmod u+x copilot-app-linux
+mv copilot-app-linux ~/.local/bin/
 
 sudo snapper -c root create -d "After ConfigureFedora.sh script has completed successfully"
