@@ -5,6 +5,7 @@ This directory contains a Fedora workstation setup script for installing the too
 ## Script
 
 - `ConfigureFedora.sh` - installs system packages, configures snapper backups, sets up desktop shortcuts, and applies personal shell and Git settings.
+- `sysmaintenance.sh` - interactively performs routine system maintenance and logs its output to `~/.local/var/log/`.
 
 ## Prerequisites
 
@@ -12,6 +13,7 @@ This directory contains a Fedora workstation setup script for installing the too
 - `sudo` access
 - Internet access
 - A GitHub account or access to the public repositories used by the script
+- For `sysmaintenance.sh`: `dnf`, `journalctl`, and `systemctl`
 
 ## Usage
 
@@ -27,6 +29,26 @@ This directory contains a Fedora workstation setup script for installing the too
    ```bash
    ./ConfigureFedora.sh
    ```
+
+### System maintenance
+
+Run the maintenance script from this directory:
+
+```bash
+./sysmaintenance.sh
+```
+
+It prompts before cleaning the DNF package cache, removing unneeded packages,
+deleting files in `~/.cache` older than 30 days, and vacuuming the system
+journal to retain 7 days. It also reports failed systemd units. To include a
+full system upgrade, pass `--upgrade`:
+
+```bash
+./sysmaintenance.sh --upgrade
+```
+
+Each run saves a log in `~/.local/var/log/`. Use `--help` to display the
+available option.
 
 ## What the script installs
 
