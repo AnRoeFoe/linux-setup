@@ -10,7 +10,7 @@ SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
 # Install snapper
 sudo dnf -y install snapper
 
-# Create config for root and home
+# Create config for root
 sudo snapper -c root create-config /
 
 # Create a snapshot of the root filesystem
