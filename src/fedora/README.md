@@ -1,10 +1,13 @@
 # ConfigureFedora
 
-This directory contains a Fedora workstation setup script for installing the tools and configuration used on a fresh GNOME desktop.
+This directory contains scripts for setting up a Fedora workstation and the personal configuration for the account running the setup.
 
 ## Script
 
-- `ConfigureFedora.sh` - installs system packages, configures snapper backups, sets up desktop shortcuts, and applies personal shell and Git settings.
+- `ConfigureFedora.sh` - runs the Git, system, and user setup scripts in sequence.
+- `configure_git.sh` - prompts for a global Git identity and installs Git Credential Manager for the current account.
+- `configure_system.sh` - installs system packages, enables repositories, and configures snapper backups.
+- `configure_user.sh` - configures GNOME and installs dotfiles, fonts, Neovim, and the Copilot app for the current account.
 - `sysmaintenance.sh` - interactively performs routine system maintenance and logs its output to `~/.local/var/log/`.
 
 ## Prerequisites
@@ -24,11 +27,17 @@ This directory contains a Fedora workstation setup script for installing the too
    cd ConfigureArchLinux/src/fedora
    ```
 
-3. Run it:
+2. Run the full setup as the account that should receive the user configuration. The script uses `sudo` for system changes:
 
    ```bash
    ./ConfigureFedora.sh
    ```
+
+On a workstation whose system setup is already complete, a newly created account can run the user setup after cloning this repository:
+
+```bash
+./configure_user.sh
+```
 
 ### System maintenance
 
@@ -66,10 +75,10 @@ available option.
   - KeePassXC
   - Obsidian
   - Blanket
-- GNOME custom keybindings for common actions
+- GNOME custom keybindings for common actions (user setup)
 - Personal dotfiles from `https://github.com/AnRoeFoe/dotfiles.git` using `stow`
 - LazyVim starter config for Neovim
-- Global Git identity configured as:
+- Global Git identity configured for the current account as:
   - `user.name = Max Mustermann`
   - `user.email = max.mustermann@web.de`
 - Fira Code Nerd Font files copied into `~/.local/share/fonts/FiraCode`
