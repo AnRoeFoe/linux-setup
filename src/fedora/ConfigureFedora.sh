@@ -39,14 +39,14 @@ sudo systemctl enable --now snapper-cleanup.timer
 sudo dnf -y install kitty neovim stow fastfetch gummi btrfs-assistant deja-dup
 
 section "Enable RPM Fusion (free and nonfree)"
-dnf -y install \
+sudo dnf -y install \
   "https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-${FEDORA_VERSION}.noarch.rpm" \
   "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VERSION}.noarch.rpm"
-dnf -y upgrade --refresh
+sudo dnf -y upgrade --refresh
 
 section "Enable Cisco OpenH264 repo"
-dnf config-manager --set-enabled fedora-cisco-openh264 || true
-dnf -y upgrade --refresh
+sudo dnf config-manager --set-enabled fedora-cisco-openh264 || true
+sudo dnf -y upgrade --refresh
 
 # -----------------------------
 # 7) Multimedia and codecs
@@ -54,14 +54,14 @@ dnf -y upgrade --refresh
 section "Multimedia and codecs"
 
 info "Replace ffmpeg-free with ffmpeg"
-dnf swap -y ffmpeg-free ffmpeg --allowerasing || true
-dnf -y install vlc || true
+sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing || true
+sudo dnf -y install vlc || true
 
 info "Enable OpenH264 packages"
-dnf -y install openh264 gstreamer1-plugin-openh264 mozilla-openh264 || true
+sudo dnf -y install openh264 gstreamer1-plugin-openh264 mozilla-openh264 || true
 
 info "Install all GStreamer plugins"
-dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} \
+sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,base} \
   gstreamer1-plugin-openh264 gstreamer1-libav lame\* \
   --exclude=gstreamer1-plugins-bad-free-devel || true
 
@@ -77,7 +77,7 @@ sudo dnf -y install starship
 # Configure the Microsoft package repository so VS Code can be installed
 # via Fedora's package manager.
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo >/dev/null
 
 # Refresh metadata and install the editor itself.
 dnf check-update
@@ -93,7 +93,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
 
-dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ < custom_shortcuts.txt
+dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ <custom_shortcuts.txt
 
 # Clone the personal dotfiles repo and apply the relevant stow-managed configs.
 git clone https://github.com/AnRoeFoe/dotfiles.git ~/.repositories/dotfiles
