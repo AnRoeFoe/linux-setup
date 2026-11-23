@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -euo pipefail
+
 # Prompt for the global Git identity used for commits on this machine.
 # This sets the name and email stored in the user's ~/.gitconfig.
 while :; do
