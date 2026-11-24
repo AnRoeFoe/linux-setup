@@ -11,13 +11,12 @@ cd src/opensuse
 
 ## Prerequisites
 
-- openSUSE Tumbleweed with GNOME, btrfs root recommended (for snapper)
+- openSUSE Tumbleweed with GNOME
 - `sudo` access and internet access
 
 ## What it does
 
 - Git identity and credential manager (shared `../fedora/configure_git.sh`)
-- snapper with timeline/cleanup timers and snapshots before and after setup
 - `kitty`, `neovim`, `stow`, `fastfetch`, `gummi`, `btrfs-assistant`, `starship`, `code` (Microsoft zypper repo)
 - Flatpaks from Flathub: KeePassXC, Obsidian, Blanket
 - `niri` and DankMaterialShell; pick niri at the login screen

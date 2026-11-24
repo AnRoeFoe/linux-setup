@@ -17,13 +17,6 @@ zyp() { sudo zypper --non-interactive "$@"; }
 echo "==> Configuring Git"
 "$FEDORA_DIR/configure_git.sh"
 
-echo "==> Installing and configuring snapper"
-zyp install snapper
-# Tumbleweed's default btrfs layout usually ships a root config already.
-sudo snapper list-configs | grep -qw root || sudo snapper -c root create-config /
-sudo snapper -c root create -d "Initial snapshot of root filesystem"
-sudo systemctl enable --now snapper-timeline.timer snapper-cleanup.timer
-
 echo "==> Installing core CLI and desktop tools"
 zyp install kitty neovim stow fastfetch gummi btrfs-assistant starship wget flatpak
 
@@ -85,5 +78,4 @@ mkdir -p ~/.local/bin
 wget -O ~/.local/bin/copilot-app-linux https://gh.io/copilot-app-linux
 chmod u+x ~/.local/bin/copilot-app-linux
 
-sudo snapper -c root create -d "After ConfigureOpenSuse.sh script has completed successfully"
 echo "Done. Log out and choose GNOME or niri at the login screen."
