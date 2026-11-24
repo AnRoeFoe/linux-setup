@@ -14,11 +14,11 @@ readonly FEDORA_DIR="$SCRIPT_DIR/../fedora"
 
 zyp() { sudo zypper --non-interactive "$@"; }
 
-echo "==> Configuring Git"
-"$FEDORA_DIR/configure_git.sh"
-
 echo "==> Creating initial snapshot"
 sudo snapper -c root create -d "Initial snapshot of root filesystem"
+
+echo "==> Configuring Git"
+"$FEDORA_DIR/configure_git.sh"
 
 echo "==> Installing core CLI and desktop tools"
 zyp install kitty neovim stow fastfetch gummi btrfs-assistant starship wget flatpak
