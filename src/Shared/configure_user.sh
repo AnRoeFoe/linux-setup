@@ -9,6 +9,7 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly SHARED_DIR="$SCRIPT_DIR/../Shared"
 readonly DOTFILES_DIR="$HOME/.repositories/dotfiles"
 readonly USER_BIN_DIR="$HOME/.local/bin"
 
@@ -23,7 +24,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
 
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ \
-  < "$SCRIPT_DIR/custom_shortcuts.txt"
+  < "$SHARED_DIR/custom_shortcuts.txt"
 
 # Clone the personal dotfiles repo and apply the relevant stow-managed configs.
 mkdir -p "$HOME/.repositories"
@@ -43,7 +44,7 @@ git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
 # Install the FiraCode Nerd Font.
 readonly FONT_DIR="$HOME/.local/share/fonts/FiraCode"
 mkdir -p "$FONT_DIR" "$USER_BIN_DIR"
-cp "$SCRIPT_DIR"/fonts/FiraCode/* "$FONT_DIR"/
+cp "$SHARED_DIR"/fonts/FiraCode/* "$FONT_DIR"/
 fc-cache -fv
 
 wget -O "$USER_BIN_DIR/copilot-app-linux" https://gh.io/copilot-app-linux

@@ -10,7 +10,6 @@ set -euo pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 readonly SCRIPT_DIR
-readonly FEDORA_DIR="$SCRIPT_DIR/../fedora"
 readonly SHARED_DIR="$SCRIPT_DIR/../Shared"
 
 zyp() { sudo zypper --non-interactive "$@"; }
@@ -58,7 +57,7 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/', \
   '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom4/']"
 dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ \
-  < "$FEDORA_DIR/custom_shortcuts.txt"
+  < "$SHARED_DIR/custom_shortcuts.txt"
 
 echo "==> Applying dotfiles"
 git clone https://github.com/AnRoeFoe/dotfiles.git ~/.repositories/dotfiles
@@ -74,7 +73,7 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 
 echo "==> Installing FiraCode Nerd Font"
 mkdir -p ~/.local/share/fonts/FiraCode
-cp "$FEDORA_DIR"/fonts/FiraCode/* ~/.local/share/fonts/FiraCode
+cp "$SHARED_DIR"/fonts/FiraCode/* ~/.local/share/fonts/FiraCode
 fc-cache -f
 
 echo "==> Installing Copilot app"

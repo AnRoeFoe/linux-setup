@@ -9,9 +9,10 @@ if [ "$(id -u)" -eq 0 ]; then
 fi
 
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
+readonly SHARED_DIR="$SCRIPT_DIR/../Shared"
 
-"$SCRIPT_DIR/../Shared/configure_git.sh"
+"$SHARED_DIR/configure_git.sh"
 "$SCRIPT_DIR/configure_system.sh"
-"$SCRIPT_DIR/configure_user.sh"
+"$SHARED_DIR/configure_user.sh"
 
 sudo snapper -c root create -d "After ConfigureFedora.sh script has completed successfully"
