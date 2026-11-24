@@ -17,6 +17,7 @@ cd src/opensuse
 ## What it does
 
 - Git identity and credential manager (shared `../fedora/configure_git.sh`)
+- snapper snapshots before and after setup (snapper itself is preinstalled on openSUSE)
 - `kitty`, `neovim`, `stow`, `fastfetch`, `gummi`, `btrfs-assistant`, `starship`, `code` (Microsoft zypper repo)
 - Flatpaks from Flathub: KeePassXC, Obsidian, Blanket
 - `niri` and DankMaterialShell; pick niri at the login screen
