@@ -10,7 +10,7 @@ fi
 
 readonly SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 
-"$SCRIPT_DIR/configure_git.sh"
+"$SCRIPT_DIR/../Shared/configure_git.sh"
 "$SCRIPT_DIR/configure_system.sh"
 "$SCRIPT_DIR/configure_user.sh"
 
