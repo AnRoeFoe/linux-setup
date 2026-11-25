@@ -27,8 +27,12 @@ dconf load /org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/ \
   < "$SHARED_DIR/custom_shortcuts.txt"
 
 # Clone the personal dotfiles repo and apply the relevant stow-managed configs.
-mkdir -p "$HOME/.repositories"
-git clone https://github.com/AnRoeFoe/dotfiles.git "$DOTFILES_DIR"
+if [[ -e "$DOTFILES_DIR" ]]; then
+  printf "Skipping dotfiles clone: %s already exists.\n" "$DOTFILES_DIR"
+else
+  mkdir -p "$HOME/.repositories"
+  git clone https://github.com/AnRoeFoe/dotfiles.git "$DOTFILES_DIR"
+fi
 (
   cd "$DOTFILES_DIR"
   stow -t "$HOME" starship
@@ -38,8 +42,12 @@ git clone https://github.com/AnRoeFoe/dotfiles.git "$DOTFILES_DIR"
 )
 
 # Install the LazyVim starter configuration for Neovim.
-mkdir -p "$HOME/.config"
-git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
+if [[ -e "$HOME/.config/nvim" ]]; then
+  printf "Skipping LazyVim clone: %s already exists.\n" "$HOME/.config/nvim"
+else
+  mkdir -p "$HOME/.config"
+  git clone https://github.com/LazyVim/starter "$HOME/.config/nvim"
+fi
 
 # Install the FiraCode Nerd Font.
 readonly FONT_DIR="$HOME/.local/share/fonts/FiraCode"
