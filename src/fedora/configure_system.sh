@@ -19,7 +19,7 @@ sudo dnf -y install \
   "https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-${FEDORA_VERSION}.noarch.rpm"
 
 printf "\n==> Enable Cisco OpenH264 repo\n"
-sudo dnf config-manager --set-enabled fedora-cisco-openh264
+sudo dnf config-manager enable fedora-cisco-openh264
 
 printf "\n==> Add Terra repository\n"
 sudo dnf install --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
